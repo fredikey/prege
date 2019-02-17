@@ -14,6 +14,10 @@ export default new Router({
       component: Home
     },
     {
+      path: "/index.html",
+      redirect: "/"
+    },
+    {
       path: "/test/:id",
       name: "test",
       component: Test
