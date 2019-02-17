@@ -1,7 +1,8 @@
 <template>
-  <v-flex>
-    <h3>{{ exercise.text }}</h3>
+  <v-flex align-self-center>
+    <h3 class="headline mb-0">{{ exercise.text }}</h3>
     <v-checkbox
+			:key="index"
       v-for="(option, index) in exercise.options"
       v-model="selected"
       :label="option"
@@ -28,11 +29,18 @@ export default {
         this.exercise.answer.includes(this.selected.join(""))
       );
       if (result) {
-        this.selected = [];
+        this.clearControls();
       }
     });
+    this.$root.$on("skipExercise", () => {
+      this.clearControls();
+    });
   },
-  computed: {}
+  methods: {
+    clearControls() {
+      this.selected = [];
+    }
+  }
 };
 </script>
 
